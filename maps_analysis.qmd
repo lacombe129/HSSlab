@@ -1,0 +1,553 @@
+---
+title: "maps analysis"
+format: pdf
+---
+
+
+```{r}
+bill_coverage = read.csv("~/Downloads/Bill collection data - State coverage.csv")
+bill_tag = read.csv("~/Downloads/Bill collection data - Policy Tags.csv")
+bill_Yujie = read.csv(("~/Downloads/Bill collection data - Yujie Gong.csv"))
+bill_lacombe = read.csv("~/Downloads/Bill collection data - Scott LaCombe.csv")
+bill_margot = read.csv("~/Downloads/Bill collection data - Margot Audero.csv")
+bill_angelica = read.csv("~/Downloads/Bill collection data - Angelica Brito.csv")
+bill_jaden = read.csv("~/Downloads/Bill collection data - Jaden Gerard.csv")
+bill_josey = read.csv("~/Downloads/Bill collection data - Josey Gerrard.csv")
+bill_perla = read.csv("~/Downloads/Bill collection data - Perla Ingabire.csv")
+bill_olivia = read.csv("~/Downloads/Bill collection data - Olivia Smith.csv")
+bill_avery = read.csv("~/Downloads/Bill collection data - Avery Spicka.csv")
+bill_bridget = read.csv("~/Downloads/Bill collection data - Bridget Provost.csv")
+bill_molley = read.csv("~/Downloads/Bill collection data - Molly Zelloe.csv")
+```
+
+# selecting the columns
+```{r}
+selected_Yujie <- bill_Yujie[, 1:14]
+selected_lacombe <- bill_lacombe[, 1:14]
+selected_margot <- bill_margot[, 1:14]
+selected_angelica <-bill_angelica[, 1:14]
+selected_jaden <- bill_jaden[, 1:14]
+selected_josey <- bill_josey[, 1:14]
+selected_perla<-bill_perla[, 1:14]
+selected_olivia<-bill_olivia[, 1:14]
+selected_avery <- bill_avery[, 1:14]
+selected_bridget <- bill_bridget[, 1:14]
+selected_molley <- bill_molley[, 1:14]
+```
+
+
+```{r}
+combined_dataset <- rbind(selected_Yujie, selected_lacombe,selected_margot, selected_angelica, selected_jaden,selected_josey, selected_perla, selected_olivia,selected_avery, selected_bridget,selected_molley )
+```
+
+```{r}
+library(dplyr)
+
+combined_dataset_2023 <- combined_dataset |>
+  filter(year == 2023)
+
+```
+
+```{r}
+number_of_policy_data<- combined_dataset_2023|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+
+```{r}
+library(ggplot2)
+library(sf)
+library(usmap)
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+# number of policy for each state
+```{r}
+centroid_labels <- usmapdata::centroid_labels("states")
+state_labels <- merge(number_of_policy_data, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = number_of_policy_data, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data = number_of_policy_data, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# number of expanding policy
+```{r}
+dataset_2023_expanding <- combined_dataset_2023|>
+  filter(direction == "expanding")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_expanding_labels <- merge(dataset_2023_expanding, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_expanding, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Expanding Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_expanding_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data = dataset_2023_expanding, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Expanding Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_expanding_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# number of restrciting policy
+```{r}
+dataset_2023_restricting <- combined_dataset_2023|>
+  filter(direction == "restricting")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_restricting_labels <- merge(dataset_2023_restricting, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_restricting, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Restricting Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_restricting_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data = dataset_2023_restricting, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Restricting Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_restricting_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# for each policy
+```{r}
+dataset_2023_categories <- combined_dataset_2023|>
+  filter(policy != "" & policy != "-99")|>
+  group_by(policy, state)|>
+  summarise(number_of_policies = n())
+dataset_2023_categories
+```
+
+# party and policy
+# GOP
+```{r}
+dataset_2023_GOP <- combined_dataset_2023|>
+  filter(party == "GOP")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_GOP_labels <- merge(dataset_2023_GOP, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_GOP, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Republican Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_GOP_labels , aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_GOP, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Republican Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_GOP_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# DEM
+```{r}
+dataset_2023_DEM<- combined_dataset_2023|>
+  filter(party == "DEM")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_DEM_labels <- merge(dataset_2023_DEM, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_DEM, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Democratic Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_DEM_labels , aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_DEM, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ Democratic Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_DEM_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# GOP and expanding
+```{r}
+dataset_2023_GOP_expanding <- combined_dataset_2023|>
+  filter(party == "GOP", direction == "expanding")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_GOP_expanding_labels <- merge(dataset_2023_GOP_expanding, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_GOP_expanding, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ expanding Republican Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_GOP_expanding_labels , aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_GOP_expanding, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ expanding Republican Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_GOP_expanding_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# GOP and restricting
+```{r}
+dataset_2023_GOP_restricting <- combined_dataset_2023|>
+  filter(party == "GOP", direction == "restricting")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_GOP_restricting_labels <- merge(dataset_2023_GOP_restricting, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_GOP_restricting, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ restricting Republican Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_GOP_restricting_labels , aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_GOP_restricting, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ restricting Republican Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_GOP_restricting_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# DEM and expanding
+```{r}
+dataset_2023_DEM_expanding <- combined_dataset_2023|>
+  filter(party == "DEM", direction == "expanding")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_DEM_expanding_labels <- merge(dataset_2023_DEM_expanding, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_DEM_expanding, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ expanding Democratic Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_DEM_expanding_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_DEM_expanding, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ expanding Democratic Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_DEM_expanding_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# DEM and restricting
+```{r}
+dataset_2023_DEM_restricting <- combined_dataset_2023|>
+  filter(party == "DEM", direction == "restricting")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_DEM_restricting_labels <- merge(dataset_2023_DEM_restricting, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_DEM_restricting, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ restricting Democratic Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_DEM_restricting_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_DEM_restricting, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ restricting Democratic Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_DEM_restricting_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+# adopted or not
+
+```{r}
+dataset_2023_adopted <- combined_dataset_2023|>
+  filter(adopted == "1")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_adopted_labels <- merge(dataset_2023_adopted, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_adopted, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ adopted Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_adopted_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_adopted, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ adopted Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_adopted_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+# not adopted
+
+```{r}
+dataset_2023_not_adopted <- combined_dataset_2023|>
+  filter(adopted == "0")|>
+  group_by(state)|>
+  summarise(number_of_policies = n())
+```
+
+```{r}
+us_map <- plot_usmap(regions = "states") +
+  labs(
+    title = "U.S. States",
+    subtitle = "Number of Policies for Each State in the U.S."
+  ) +
+  theme(panel.background = element_blank())
+```
+
+```{r}
+state_not_adopted_labels <- merge(dataset_2023_not_adopted, centroid_labels, by.x = "state", by.y = "abbr")
+```
+
+```{r}
+plot_usmap(data = dataset_2023_not_adopted, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ failed to adopt Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data =state_not_adopted_labels, aes(
+    x = x, y = y,
+    label = state,
+  ), color = "black") 
+  
+```
+
+```{r}
+plot_usmap(data =dataset_2023_not_adopted, values = "number_of_policies", color = "blue") + 
+  scale_fill_continuous(low = "white", high = "blue", name = "number of policies", label = scales::comma) + 
+  labs(title = "U.S. States", subtitle = "Number of lgbtq+ failed to adopt Policies for Each State in the U.S. in 2023") +
+  theme(legend.position = "right")+
+  geom_text(data = state_not_adopted_labels, aes(
+    x = x, y = y,
+    label = number_of_policies,
+  ), color = "black") 
+```
+
+
