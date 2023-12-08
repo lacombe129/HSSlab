@@ -1,0 +1,197 @@
+---
+title: "Sheet"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+library(googlesheets4)
+install.packages("janitor")
+library(janitor)
+
+bills <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=1730399452"
+
+yugie <- read_sheet(bills, sheet = 4)
+
+  
+
+```
+
+```{r}
+#Setting up 
+library(dplyr)
+gs4_get("https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=1730399452")
+```
+
+```{r}
+gs4_get("https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=2146667779")
+yugie <- range_read(bills, sheet = 4)
+scott <- range_read(bills, sheet = 5)
+margot <- range_read(bills, sheet = 6)
+angelica <- range_read(bills, sheet = 7)
+jaden <- range_read(bills, sheet = 8)
+josey <- range_read(bills, sheet = 9)
+perla <- range_read(bills, sheet = 10)
+olivia <- range_read(bills, sheet = 11)
+avery <- range_read(bills, sheet = 12)
+bridget <- range_read(bills, sheet = 13)
+grace <- range_read(bills, sheet = 14)
+molly <- range_read(bills, sheet = 15)
+
+scott$coder <- "Scott"
+margot$coder <- "Margot"
+margot$...16 <- NULL
+margot$...17 <- NULL
+margot$...18 <- NULL
+margot$...19 <- NULL
+margot$...20 <- NULL
+margot$...21 <- NULL
+margot$...22 <- NULL
+
+angelica$coder <- "Angelica"
+angelica$notes <- ""
+perla$coder <- "Perla"
+perla$...16 <- NULL
+perla$...17 <- NULL
+perla$notes <- perla$...15
+perla$...15 <- NULL
+
+olivia$coder <- "Olivia"
+olivia$...16 <- NULL
+olivia$...17 <- NULL
+
+bridget$coder <- "Bridget"
+avery$coder <- "Avery"
+avery$...16 <- NULL
+
+molly$coder <- "Molly"
+
+yujie$coder <- "Yujie"
+jaden$coder <- "Jaden"
+josey$coder <- "Josey"
+josey$...16 <- NULL
+```
+
+```{r}
+ggplot(az_co_de_in_ia_ks_md_, aes(x = state, fill = direction))+
+  geom_bar()
+```
+
+```{r}
+library(rio)
+library(tidyverse)
+
+
+#extracting sheets
+scott <- df$`Scott LaCombe`
+margot <- df$`Margot Audero`
+angelica <- df$`Angelica Brito`
+perla <- df$`Perla Ingabire`
+olivia <- df$`Olivia Smith`
+bridget <- df$`Bridget Provost`
+avery <- df$`Avery Spicka`
+molly <- df$`Molly Zelloe`
+yujie <- df$`Yujie Gong`
+jaden <- df$`Jaden Gerard`
+josey <- df$`Josey Gerrard`
+
+scott$coder <- "Scott"
+margot$coder <- "Margot"
+margot$...16 <- NULL
+margot$...17 <- NULL
+margot$...18 <- NULL
+margot$...19 <- NULL
+margot$...20 <- NULL
+margot$...21 <- NULL
+margot$...22 <- NULL
+
+angelica$coder <- "Angelica"
+angelica$notes <- ""
+perla$coder <- "Perla"
+perla$...16 <- NULL
+perla$...17 <- NULL
+perla$notes <- perla$...15
+perla$...15 <- NULL
+
+olivia$coder <- "Olivia"
+olivia$...16 <- NULL
+olivia$...17 <- NULL
+
+bridget$coder <- "Bridget"
+avery$coder <- "Avery"
+avery$...16 <- NULL
+
+molly$coder <- "Molly"
+
+yujie$coder <- "Yujie"
+jaden$coder <- "Jaden"
+josey$coder <- "Josey"
+josey$...16 <- NULL
+
+policies <- rbind(scott, margot, molly, bridget, olivia, avery, perla, angelica, jaden, josey, yujie)
+
+table(policies$adopted)
+
+policies <- policies |>
+  mutate(adoption_bin=if_else(adopted==1, 1, 0))
+
+### helpful for cleanign data- seems to override tidyverse though
+library(forcats)
+
+policies$direction1 <- fct_collapse(policies$direction, expansive = c("expanding", "Expanding", "expansive", "expansve"),
+                                    restrictive = c("restrictive", "restricting", "restrective", "Restricting"), neutral=c("Neutral", "Neutral/restricting", "neutral/restrictive", "neutral/restricting"))
+
+table(policies$direction1)
+
+export(policies, "cleaned_policies.csv")
+
+library(tidyverse)
+
+library(usmap)
+library(ggplot2)
+## filter out policies we aren't sure about yet
+
+### by direciton first
+direction_policies <- policies |>
+  filter(direction1!="-99.0")
+
+summary_direction <- direction_policies |>
+  group_by(state, direction1) |>
+summarise(count_direction=n())
+
+expansive <- summary_direction |>
+  filter(direction1=="expansive")
+
+restrictive <- summary_direction |>
+  filter(direction1=="restrictive")
+
+plot_usmap(data = expansive, values = "count_direction") + 
+  scale_fill_continuous(name = "Count of Expansive Policies", label = scales::comma) + 
+  theme(legend.position = "right")
+
+plot_usmap(data = restrictive, values = "count_direction") + 
+  scale_fill_continuous(name = "Count of Restrictive Policies", label = scales::comma) + 
+  theme(legend.position = "right")
+
+### count of adopted policies
+
+summary_adopt <- policies |>
+  filter(adoption_bin==1) |>
+  group_by(state) |>
+  summarise(count_adopt=n())
+
+plot_usmap(data = summary_adopt, values = "count_adopt") + 
+  scale_fill_continuous(name = "Count of Policy Adoptions", label = scales::comma) + 
+  theme(legend.position = "right")
+```
+
+```{r}
+names <- list("scott", "molly", "olivia", "jaden", "josey", "bridget", "avery", "perla", "margot", "angelica", "yujie") ## make a list of everyones names 
+
+for (i in seq_along(names)){
+  names[i] <- read_sheet(bills, sheet = 4)
+}
+
+```
