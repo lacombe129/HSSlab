@@ -8,7 +8,7 @@ editor_options:
 
 ```{r}
 library(googlesheets4)
-install.packages("janitor")
+#install.packages("janitor")
 library(janitor)
 
 bills <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=1730399452"
@@ -26,8 +26,8 @@ gs4_get("https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfT
 ```
 
 ```{r}
-gs4_get("https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=2146667779")
-yugie <- range_read(bills, sheet = 4)
+gs4_get("https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=2146667779") ## what does this line do
+yujie <- range_read(bills, sheet = 4)
 scott <- range_read(bills, sheet = 5)
 margot <- range_read(bills, sheet = 6)
 angelica <- range_read(bills, sheet = 7)
@@ -188,10 +188,18 @@ plot_usmap(data = summary_adopt, values = "count_adopt") +
 ```
 
 ```{r}
-names <- list("scott", "molly", "olivia", "jaden", "josey", "bridget", "avery", "perla", "margot", "angelica", "yujie") ## make a list of everyones names 
+names <- list("Scott", "molly", "olivia", "jaden", "josey", "bridget", "avery", "perla", "margot", "angelica", "yujie") ## make a list of everyones names 
 
 for (i in seq_along(names)){
-  names[i] <- read_sheet(bills, sheet = 4)
-}
+  names[i] <- read_sheet(bills, sheet = i)
+} #i think instean, we need to write a function that doea all the standard cleaning code that we can then loop through
 
+```
+
+```{r}
+cleaning_importing <- function(bill, x, coder){
+  data <- read_sheet(bill, sheet = x) ## import the data from the sheet
+  data$coder <- coder
+  data$...16 <- NULL
+}
 ```
