@@ -6,8 +6,6 @@ library(tidyverse)
 library(googlesheets4)
 
 # Authenticate with your Google account
-# This will open a browser window for authentication
-gs4_auth()
 
 # Replace 'your_sheet_url' with the actual URL of your Google Sheet
 sheet_url <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=608748933"
@@ -98,20 +96,20 @@ policy_wide <- policy_wide |>
 
 policy_wide <- policy_wide |>
   group_by(state) |>
-  mutate(dont_say_gay=ifelse(dont_say_gay<=year & dont_say_gay!=0,-1,0)) |>
+  mutate(dont_say_gay=ifelse(dont_say_gay<=year & dont_say_gay!=0,1,0)) |>
   mutate(name_change_legal=ifelse(name_change_legal<=year & name_change_legal!=0,1,0)) |>
-  mutate(same_sex_marriage_ban=ifelse(same_sex_marriage_ban<=year & same_sex_marriage_ban!=0,-1,0)) |>
-  mutate(relig_lib_protection_descrime=ifelse(relig_lib_protection_descrime<=year & relig_lib_protection_descrime!=0,-1,0)) |>
+  mutate(same_sex_marriage_ban=ifelse(same_sex_marriage_ban<=year & same_sex_marriage_ban!=0,1,0)) |>
+  mutate(relig_lib_protection_descrime=ifelse(relig_lib_protection_descrime<=year & relig_lib_protection_descrime!=0,1,0)) |>
   mutate(same_sex_mariage_legal=ifelse(same_sex_mariage_legal<=year & same_sex_mariage_legal!=0,1,0)) |>
-  mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,-1,0)) |>
-  mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,-1,0)) |>
-  mutate(surgery_require_genderchange=ifelse(surgery_require_genderchange<=year & surgery_require_genderchange!=0,-1,0)) |>
+  mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,1,0)) |>
+  mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,1,0)) |>
+  mutate(surgery_require_genderchange=ifelse(surgery_require_genderchange<=year & surgery_require_genderchange!=0,1,0)) |>
   mutate(lgbt_discrim_protect=ifelse(lgbt_discrim_protect<=year & lgbt_discrim_protect!=0,1,0)) |>
-  mutate(preemption_discrim =ifelse(preemption_discrim <=year & preemption_discrim!=0,-1,0)) |>
+  mutate(preemption_discrim =ifelse(preemption_discrim <=year & preemption_discrim!=0,1,0)) |>
   mutate(Genderchange_x=ifelse(Genderchange_x<=year & Genderchange_x!=0,1,0)) |>
   mutate(decrim_same_sex=ifelse(decrim_same_sex<=year & decrim_same_sex!=0,1,0)) |>
   mutate(No_surgery_genderchange=ifelse(No_surgery_genderchange<=year & No_surgery_genderchange!=0,1,0)) |>
-  mutate(No_genderchange=ifelse(No_genderchange<=year & No_genderchange!=0,-1,0)) 
+  mutate(No_genderchange=ifelse(No_genderchange<=year & No_genderchange!=0,1,0)) 
 
 
 
