@@ -101,8 +101,8 @@ policy_wide <- policy_wide |>
   mutate(same_sex_marriage_ban=ifelse(same_sex_marriage_ban<=year & same_sex_marriage_ban!=0,1,0)) |>
   mutate(relig_lib_protection_descrime=ifelse(relig_lib_protection_descrime<=year & relig_lib_protection_descrime!=0,1,0)) |>
   mutate(same_sex_mariage_legal=ifelse(same_sex_mariage_legal<=year & same_sex_mariage_legal!=0,1,0)) |>
-  mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,1,0)) |>
-  mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,1,0)) |>
+  mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,-1,0)) |>
+  mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,-1,0)) |>
   mutate(surgery_require_genderchange=ifelse(surgery_require_genderchange<=year & surgery_require_genderchange!=0,1,0)) |>
   mutate(lgbt_discrim_protect=ifelse(lgbt_discrim_protect<=year & lgbt_discrim_protect!=0,1,0)) |>
   mutate(preemption_discrim =ifelse(preemption_discrim <=year & preemption_discrim!=0,1,0)) |>

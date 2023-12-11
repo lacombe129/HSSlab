@@ -37,3 +37,11 @@ merged$pm_index <- merged$F1
 library(usmap)
 
 
+ summary_score <- merged |>
+     group_by(state) |>
+    summarise(mean_score=mean(F1))
+ 
+ plot_usmap(data = summary_score, values = "mean_score") + 
+    scale_fill_continuous(name = "Average Score", label = scales::comma) + 
+     theme(legend.position = "right")
+ 
