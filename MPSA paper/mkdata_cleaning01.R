@@ -8,11 +8,13 @@ library(googlesheets4)
 # Authenticate with your Google account
 
 # Replace 'your_sheet_url' with the actual URL of your Google Sheet
-sheet_url <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit#gid=608748933"
+sheet_url <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3lKBfTP6qJ-7Z9GErM/edit?usp=sharing"
 
 # Read the Google Sheet into an R data frame
-df <- read_sheet(sheet_url, sheet="mpsa_data")
+df <- read_sheet(sheet_url, sheet="mpsa")
 
+## you will need to specify how you wnat to read in the sheet data 
+2
 # Print the data
 print(df)
 
@@ -79,7 +81,7 @@ policy_wide <- policy_wide |>
   mutate(dont_say_gay=max(dont_say_gay)) |>
   mutate(name_change_legal=max(name_change_legal)) |>
   mutate(same_sex_marriage_ban=max(same_sex_marriage_ban)) |>
-  mutate(relig_lib_protection_descrime=max(relig_lib_protection_descrime)) |>
+  mutate(relig_lib_protection_discrim=max(relig_lib_protection_discrim)) |>
   mutate(same_sex_mariage_legal=max(same_sex_mariage_legal)) |>
   mutate(gac_ban=max(gac_ban)) |>
   mutate(bathroom_ban=max(bathroom_ban)) |>
@@ -99,7 +101,7 @@ policy_wide <- policy_wide |>
   mutate(dont_say_gay=ifelse(dont_say_gay<=year & dont_say_gay!=0,1,0)) |>
   mutate(name_change_legal=ifelse(name_change_legal<=year & name_change_legal!=0,1,0)) |>
   mutate(same_sex_marriage_ban=ifelse(same_sex_marriage_ban<=year & same_sex_marriage_ban!=0,1,0)) |>
-  mutate(relig_lib_protection_descrime=ifelse(relig_lib_protection_descrime<=year & relig_lib_protection_descrime!=0,1,0)) |>
+  mutate(relig_lib_protection_discrim=ifelse(relig_lib_protection_discrim<=year & relig_lib_protection_discrim!=0,1,0)) |>
   mutate(same_sex_mariage_legal=ifelse(same_sex_mariage_legal<=year & same_sex_mariage_legal!=0,1,0)) |>
   mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,-1,0)) |>
   mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,-1,0)) |>
@@ -115,7 +117,7 @@ policy_wide <- policy_wide |>
 
 ## for same sex marriage ban- needs to be removed if marriage legalized
 
-policy_wide$same_sex_marriage_ban[policy_wide$same_sex_mariage_legal == 1] <- 0
+policy_wide$same_sex_marriage_ban[policy_wide$same_sex_mariage_legal == 1] <- -1
 
 
 policy_wide <- policy_wide |>
