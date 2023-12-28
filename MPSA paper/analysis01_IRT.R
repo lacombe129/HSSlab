@@ -39,14 +39,19 @@ merged <- cbind(est.theta, df)
 
 merged$pm_index <- merged$F1
 
+merged$statenam <- merged$state
+merged$state <- NULL
+
+export(merged, "MPSA paper/scale.csv")
+
 library(usmap)
 
 
  summary_score <- merged |>
      group_by(state) |>
-    summarise(mean_score=mean(F1))
+    filter(year==2023)
  
- plot_usmap(data = summary_score, values = "mean_score") + 
+ plot_usmap(data = summary_score, values = "pm_index") + 
     scale_fill_continuous(name = "Average Score", label = scales::comma) + 
      theme(legend.position = "right")
  

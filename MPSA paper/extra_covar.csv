@@ -1,0 +1,851 @@
+year,state_name,dem_unified,rep_unified
+2000,Alabama,1,0
+2001,Alabama,1,0
+2002,Alabama,1,0
+2003,Alabama,0,0
+2004,Alabama,0,0
+2005,Alabama,0,0
+2006,Alabama,0,0
+2007,Alabama,0,0
+2008,Alabama,0,0
+2009,Alabama,0,0
+2010,Alabama,0,0
+2011,Alabama,0,1
+2012,Alabama,0,1
+2013,Alabama,0,1
+2014,Alabama,0,1
+2015,Alabama,0,1
+2016,Alabama,0,1
+2000,Alaska,0,0
+2001,Alaska,0,0
+2002,Alaska,0,0
+2003,Alaska,0,1
+2004,Alaska,0,1
+2005,Alaska,0,1
+2006,Alaska,0,1
+2007,Alaska,0,1
+2008,Alaska,0,1
+2009,Alaska,0,0
+2010,Alaska,0,0
+2011,Alaska,0,0
+2012,Alaska,0,0
+2013,Alaska,0,1
+2014,Alaska,0,1
+2015,Alaska,0,0
+2016,Alaska,0,0
+2000,Arizona,0,1
+2001,Arizona,0,0
+2002,Arizona,0,0
+2003,Arizona,0,0
+2004,Arizona,0,0
+2005,Arizona,0,0
+2006,Arizona,0,0
+2007,Arizona,0,0
+2008,Arizona,0,0
+2009,Arizona,0,1
+2010,Arizona,0,1
+2011,Arizona,0,1
+2012,Arizona,0,1
+2013,Arizona,0,1
+2014,Arizona,0,1
+2015,Arizona,0,1
+2016,Arizona,0,1
+2000,Arkansas,0,0
+2001,Arkansas,0,0
+2002,Arkansas,0,0
+2003,Arkansas,0,0
+2004,Arkansas,0,0
+2005,Arkansas,0,0
+2006,Arkansas,0,0
+2007,Arkansas,1,0
+2008,Arkansas,1,0
+2009,Arkansas,1,0
+2010,Arkansas,1,0
+2011,Arkansas,1,0
+2012,Arkansas,1,0
+2013,Arkansas,0,0
+2014,Arkansas,0,0
+2015,Arkansas,0,1
+2016,Arkansas,0,1
+2000,California,1,0
+2001,California,1,0
+2002,California,1,0
+2003,California,1,0
+2004,California,0,0
+2005,California,0,0
+2006,California,0,0
+2007,California,0,0
+2008,California,0,0
+2009,California,0,0
+2010,California,0,0
+2011,California,1,0
+2012,California,1,0
+2013,California,1,0
+2014,California,1,0
+2015,California,1,0
+2016,California,1,0
+2000,Colorado,0,1
+2001,Colorado,0,0
+2002,Colorado,0,0
+2003,Colorado,0,1
+2004,Colorado,0,1
+2005,Colorado,0,0
+2006,Colorado,0,0
+2007,Colorado,1,0
+2008,Colorado,1,0
+2009,Colorado,1,0
+2010,Colorado,1,0
+2011,Colorado,0,0
+2012,Colorado,0,0
+2013,Colorado,1,0
+2014,Colorado,1,0
+2015,Colorado,0,0
+2016,Colorado,0,0
+2000,Connecticut,0,0
+2001,Connecticut,0,0
+2002,Connecticut,0,0
+2003,Connecticut,0,0
+2004,Connecticut,0,0
+2005,Connecticut,0,0
+2006,Connecticut,0,0
+2007,Connecticut,0,0
+2008,Connecticut,0,0
+2009,Connecticut,0,0
+2010,Connecticut,0,0
+2011,Connecticut,1,0
+2012,Connecticut,1,0
+2013,Connecticut,1,0
+2014,Connecticut,1,0
+2015,Connecticut,1,0
+2016,Connecticut,1,0
+2000,Delaware,0,0
+2001,Delaware,0,0
+2002,Delaware,0,0
+2003,Delaware,0,0
+2004,Delaware,0,0
+2005,Delaware,0,0
+2006,Delaware,0,0
+2007,Delaware,0,0
+2008,Delaware,0,0
+2009,Delaware,1,0
+2010,Delaware,1,0
+2011,Delaware,1,0
+2012,Delaware,1,0
+2013,Delaware,1,0
+2014,Delaware,1,0
+2015,Delaware,1,0
+2016,Delaware,1,0
+2000,Florida,0,1
+2001,Florida,0,1
+2002,Florida,0,1
+2003,Florida,0,1
+2004,Florida,0,1
+2005,Florida,0,1
+2006,Florida,0,1
+2007,Florida,0,1
+2008,Florida,0,1
+2009,Florida,0,1
+2010,Florida,0,1
+2011,Florida,0,1
+2012,Florida,0,1
+2013,Florida,0,1
+2014,Florida,0,1
+2015,Florida,0,1
+2016,Florida,0,1
+2000,Georgia,1,0
+2001,Georgia,1,0
+2002,Georgia,1,0
+2003,Georgia,0,0
+2004,Georgia,0,0
+2005,Georgia,0,1
+2006,Georgia,0,1
+2007,Georgia,0,1
+2008,Georgia,0,1
+2009,Georgia,0,1
+2010,Georgia,0,1
+2011,Georgia,0,1
+2012,Georgia,0,1
+2013,Georgia,0,1
+2014,Georgia,0,1
+2015,Georgia,0,1
+2016,Georgia,0,1
+2000,Hawaii,1,0
+2001,Hawaii,1,0
+2002,Hawaii,1,0
+2003,Hawaii,0,0
+2004,Hawaii,0,0
+2005,Hawaii,0,0
+2006,Hawaii,0,0
+2007,Hawaii,0,0
+2008,Hawaii,0,0
+2009,Hawaii,0,0
+2010,Hawaii,0,0
+2011,Hawaii,1,0
+2012,Hawaii,1,0
+2013,Hawaii,1,0
+2014,Hawaii,1,0
+2015,Hawaii,1,0
+2016,Hawaii,1,0
+2000,Idaho,0,1
+2001,Idaho,0,1
+2002,Idaho,0,1
+2003,Idaho,0,1
+2004,Idaho,0,1
+2005,Idaho,0,1
+2006,Idaho,0,1
+2007,Idaho,0,1
+2008,Idaho,0,1
+2009,Idaho,0,1
+2010,Idaho,0,1
+2011,Idaho,0,1
+2012,Idaho,0,1
+2013,Idaho,0,1
+2014,Idaho,0,1
+2015,Idaho,0,1
+2016,Idaho,0,1
+2000,Illinois,0,0
+2001,Illinois,0,0
+2002,Illinois,0,0
+2003,Illinois,1,0
+2004,Illinois,1,0
+2005,Illinois,1,0
+2006,Illinois,1,0
+2007,Illinois,1,0
+2008,Illinois,1,0
+2009,Illinois,1,0
+2010,Illinois,1,0
+2011,Illinois,1,0
+2012,Illinois,1,0
+2013,Illinois,1,0
+2014,Illinois,1,0
+2015,Illinois,0,0
+2016,Illinois,0,0
+2000,Indiana,0,0
+2001,Indiana,0,0
+2002,Indiana,0,0
+2003,Indiana,0,0
+2004,Indiana,0,0
+2005,Indiana,0,1
+2006,Indiana,0,1
+2007,Indiana,0,0
+2008,Indiana,0,0
+2009,Indiana,0,0
+2010,Indiana,0,0
+2011,Indiana,0,1
+2012,Indiana,0,1
+2013,Indiana,0,1
+2014,Indiana,0,1
+2015,Indiana,0,1
+2016,Indiana,0,1
+2000,Iowa,0,0
+2001,Iowa,0,0
+2002,Iowa,0,0
+2003,Iowa,0,0
+2004,Iowa,0,0
+2005,Iowa,0,0
+2006,Iowa,0,0
+2007,Iowa,1,0
+2008,Iowa,1,0
+2009,Iowa,1,0
+2010,Iowa,1,0
+2011,Iowa,0,0
+2012,Iowa,0,0
+2013,Iowa,0,0
+2014,Iowa,0,0
+2015,Iowa,0,0
+2016,Iowa,0,0
+2000,Kansas,0,1
+2001,Kansas,0,1
+2002,Kansas,0,1
+2003,Kansas,0,0
+2004,Kansas,0,0
+2005,Kansas,0,0
+2006,Kansas,0,0
+2007,Kansas,0,0
+2008,Kansas,0,0
+2009,Kansas,0,0
+2010,Kansas,0,0
+2011,Kansas,0,1
+2012,Kansas,0,1
+2013,Kansas,0,1
+2014,Kansas,0,1
+2015,Kansas,0,1
+2016,Kansas,0,1
+2000,Kentucky,0,0
+2001,Kentucky,0,0
+2002,Kentucky,0,0
+2003,Kentucky,0,0
+2004,Kentucky,0,0
+2005,Kentucky,0,0
+2006,Kentucky,0,0
+2007,Kentucky,0,0
+2008,Kentucky,0,0
+2009,Kentucky,0,0
+2010,Kentucky,0,0
+2011,Kentucky,0,0
+2012,Kentucky,0,0
+2013,Kentucky,0,0
+2014,Kentucky,0,0
+2015,Kentucky,0,0
+2016,Kentucky,0,0
+2000,Louisiana,0,0
+2001,Louisiana,0,0
+2002,Louisiana,0,0
+2003,Louisiana,0,0
+2004,Louisiana,1,0
+2005,Louisiana,1,0
+2006,Louisiana,1,0
+2007,Louisiana,1,0
+2008,Louisiana,0,0
+2009,Louisiana,0,0
+2010,Louisiana,0,0
+2011,Louisiana,0,0
+2012,Louisiana,0,1
+2013,Louisiana,0,1
+2014,Louisiana,0,1
+2015,Louisiana,0,1
+2016,Louisiana,0,1
+2000,Maine,0,0
+2001,Maine,0,0
+2002,Maine,0,0
+2003,Maine,1,0
+2004,Maine,1,0
+2005,Maine,1,0
+2006,Maine,1,0
+2007,Maine,1,0
+2008,Maine,1,0
+2009,Maine,1,0
+2010,Maine,1,0
+2011,Maine,0,1
+2012,Maine,0,1
+2013,Maine,0,0
+2014,Maine,0,0
+2015,Maine,0,0
+2016,Maine,0,0
+2000,Maryland,1,0
+2001,Maryland,1,0
+2002,Maryland,1,0
+2003,Maryland,0,0
+2004,Maryland,0,0
+2005,Maryland,0,0
+2006,Maryland,0,0
+2007,Maryland,1,0
+2008,Maryland,1,0
+2009,Maryland,1,0
+2010,Maryland,1,0
+2011,Maryland,1,0
+2012,Maryland,1,0
+2013,Maryland,1,0
+2014,Maryland,1,0
+2015,Maryland,0,0
+2016,Maryland,0,0
+2000,Massachusetts,0,0
+2001,Massachusetts,0,0
+2002,Massachusetts,0,0
+2003,Massachusetts,0,0
+2004,Massachusetts,0,0
+2005,Massachusetts,0,0
+2006,Massachusetts,0,0
+2007,Massachusetts,1,0
+2008,Massachusetts,1,0
+2009,Massachusetts,1,0
+2010,Massachusetts,1,0
+2011,Massachusetts,1,0
+2012,Massachusetts,1,0
+2013,Massachusetts,1,0
+2014,Massachusetts,1,0
+2015,Massachusetts,0,0
+2016,Massachusetts,0,0
+2000,Michigan,0,1
+2001,Michigan,0,1
+2002,Michigan,0,1
+2003,Michigan,0,0
+2004,Michigan,0,0
+2005,Michigan,0,0
+2006,Michigan,0,0
+2007,Michigan,0,0
+2008,Michigan,0,0
+2009,Michigan,0,0
+2010,Michigan,0,0
+2011,Michigan,0,1
+2012,Michigan,0,1
+2013,Michigan,0,1
+2014,Michigan,0,1
+2015,Michigan,0,1
+2016,Michigan,0,1
+2000,Minnesota,0,0
+2001,Minnesota,0,0
+2002,Minnesota,0,0
+2003,Minnesota,0,0
+2004,Minnesota,0,0
+2005,Minnesota,0,0
+2006,Minnesota,0,0
+2007,Minnesota,0,0
+2008,Minnesota,0,0
+2009,Minnesota,0,0
+2010,Minnesota,0,0
+2011,Minnesota,0,0
+2012,Minnesota,0,0
+2013,Minnesota,1,0
+2014,Minnesota,1,0
+2015,Minnesota,0,0
+2016,Minnesota,0,0
+2000,Mississippi,1,0
+2001,Mississippi,1,0
+2002,Mississippi,1,0
+2003,Mississippi,1,0
+2004,Mississippi,0,0
+2005,Mississippi,0,0
+2006,Mississippi,0,0
+2007,Mississippi,0,0
+2008,Mississippi,0,0
+2009,Mississippi,0,0
+2010,Mississippi,0,0
+2011,Mississippi,0,0
+2012,Mississippi,0,1
+2013,Mississippi,0,1
+2014,Mississippi,0,1
+2015,Mississippi,0,1
+2016,Mississippi,0,1
+2000,Missouri,1,0
+2001,Missouri,0,0
+2002,Missouri,0,0
+2003,Missouri,0,0
+2004,Missouri,0,0
+2005,Missouri,0,1
+2006,Missouri,0,1
+2007,Missouri,0,1
+2008,Missouri,0,1
+2009,Missouri,0,0
+2010,Missouri,0,0
+2011,Missouri,0,0
+2012,Missouri,0,0
+2013,Missouri,0,0
+2014,Missouri,0,0
+2015,Missouri,0,0
+2016,Missouri,0,0
+2000,Montana,0,1
+2001,Montana,0,1
+2002,Montana,0,1
+2003,Montana,0,1
+2004,Montana,0,1
+2005,Montana,0,0
+2006,Montana,0,0
+2007,Montana,0,0
+2008,Montana,0,0
+2009,Montana,0,0
+2010,Montana,0,0
+2011,Montana,0,0
+2012,Montana,0,0
+2013,Montana,0,0
+2014,Montana,0,0
+2015,Montana,0,0
+2016,Montana,0,0
+2000,Nebraska,,
+2001,Nebraska,,
+2002,Nebraska,,
+2003,Nebraska,,
+2004,Nebraska,,
+2005,Nebraska,,
+2006,Nebraska,,
+2007,Nebraska,,
+2008,Nebraska,,
+2009,Nebraska,,
+2010,Nebraska,,
+2011,Nebraska,,
+2012,Nebraska,,
+2013,Nebraska,,
+2014,Nebraska,,
+2015,Nebraska,,
+2016,Nebraska,,
+2000,Nevada,0,0
+2001,Nevada,0,0
+2002,Nevada,0,0
+2003,Nevada,0,0
+2004,Nevada,0,0
+2005,Nevada,0,0
+2006,Nevada,0,0
+2007,Nevada,0,0
+2008,Nevada,0,0
+2009,Nevada,0,0
+2010,Nevada,0,0
+2011,Nevada,0,0
+2012,Nevada,0,0
+2013,Nevada,0,0
+2014,Nevada,0,0
+2015,Nevada,0,1
+2016,Nevada,0,1
+2000,New Hampshire,0,0
+2001,New Hampshire,0,0
+2002,New Hampshire,0,0
+2003,New Hampshire,0,1
+2004,New Hampshire,0,1
+2005,New Hampshire,0,0
+2006,New Hampshire,0,0
+2007,New Hampshire,1,0
+2008,New Hampshire,1,0
+2009,New Hampshire,1,0
+2010,New Hampshire,1,0
+2011,New Hampshire,0,0
+2012,New Hampshire,0,0
+2013,New Hampshire,0,0
+2014,New Hampshire,0,0
+2015,New Hampshire,0,0
+2016,New Hampshire,0,0
+2000,New Jersey,0,1
+2001,New Jersey,0,1
+2002,New Jersey,0,0
+2003,New Jersey,0,0
+2004,New Jersey,1,0
+2005,New Jersey,1,0
+2006,New Jersey,1,0
+2007,New Jersey,1,0
+2008,New Jersey,1,0
+2009,New Jersey,1,0
+2010,New Jersey,0,0
+2011,New Jersey,0,0
+2012,New Jersey,0,0
+2013,New Jersey,0,0
+2014,New Jersey,0,0
+2015,New Jersey,0,0
+2016,New Jersey,0,0
+2000,New Mexico,0,0
+2001,New Mexico,0,0
+2002,New Mexico,0,0
+2003,New Mexico,1,0
+2004,New Mexico,1,0
+2005,New Mexico,1,0
+2006,New Mexico,1,0
+2007,New Mexico,1,0
+2008,New Mexico,1,0
+2009,New Mexico,1,0
+2010,New Mexico,1,0
+2011,New Mexico,0,0
+2012,New Mexico,0,0
+2013,New Mexico,0,0
+2014,New Mexico,0,0
+2015,New Mexico,0,0
+2016,New Mexico,0,0
+2000,New York,0,0
+2001,New York,0,0
+2002,New York,0,0
+2003,New York,0,0
+2004,New York,0,0
+2005,New York,0,0
+2006,New York,0,0
+2007,New York,0,0
+2008,New York,0,0
+2009,New York,1,0
+2010,New York,1,0
+2011,New York,0,0
+2012,New York,0,0
+2013,New York,1,0
+2014,New York,1,0
+2015,New York,0,0
+2016,New York,0,0
+2000,North Carolina,1,0
+2001,North Carolina,1,0
+2002,North Carolina,1,0
+2003,North Carolina,0,0
+2004,North Carolina,0,0
+2005,North Carolina,1,0
+2006,North Carolina,1,0
+2007,North Carolina,1,0
+2008,North Carolina,1,0
+2009,North Carolina,1,0
+2010,North Carolina,1,0
+2011,North Carolina,0,0
+2012,North Carolina,0,0
+2013,North Carolina,0,1
+2014,North Carolina,0,1
+2015,North Carolina,0,1
+2016,North Carolina,0,1
+2000,North Dakota,0,1
+2001,North Dakota,0,1
+2002,North Dakota,0,1
+2003,North Dakota,0,1
+2004,North Dakota,0,1
+2005,North Dakota,0,1
+2006,North Dakota,0,1
+2007,North Dakota,0,1
+2008,North Dakota,0,1
+2009,North Dakota,0,1
+2010,North Dakota,0,1
+2011,North Dakota,0,1
+2012,North Dakota,0,1
+2013,North Dakota,0,1
+2014,North Dakota,0,1
+2015,North Dakota,0,1
+2016,North Dakota,0,1
+2000,Ohio,0,1
+2001,Ohio,0,1
+2002,Ohio,0,1
+2003,Ohio,0,1
+2004,Ohio,0,1
+2005,Ohio,0,1
+2006,Ohio,0,1
+2007,Ohio,0,0
+2008,Ohio,0,0
+2009,Ohio,0,0
+2010,Ohio,0,0
+2011,Ohio,0,1
+2012,Ohio,0,1
+2013,Ohio,0,1
+2014,Ohio,0,1
+2015,Ohio,0,1
+2016,Ohio,0,1
+2000,Oklahoma,0,0
+2001,Oklahoma,0,0
+2002,Oklahoma,0,0
+2003,Oklahoma,1,0
+2004,Oklahoma,1,0
+2005,Oklahoma,0,0
+2006,Oklahoma,0,0
+2007,Oklahoma,0,0
+2008,Oklahoma,0,0
+2009,Oklahoma,0,0
+2010,Oklahoma,0,0
+2011,Oklahoma,0,1
+2012,Oklahoma,0,1
+2013,Oklahoma,0,1
+2014,Oklahoma,0,1
+2015,Oklahoma,0,1
+2016,Oklahoma,0,1
+2000,Oregon,0,0
+2001,Oregon,0,0
+2002,Oregon,0,0
+2003,Oregon,0,0
+2004,Oregon,0,0
+2005,Oregon,0,0
+2006,Oregon,0,0
+2007,Oregon,1,0
+2008,Oregon,1,0
+2009,Oregon,1,0
+2010,Oregon,1,0
+2011,Oregon,0,0
+2012,Oregon,0,0
+2013,Oregon,1,0
+2014,Oregon,1,0
+2015,Oregon,1,0
+2016,Oregon,1,0
+2000,Pennsylvania,0,1
+2001,Pennsylvania,0,1
+2002,Pennsylvania,0,1
+2003,Pennsylvania,0,0
+2004,Pennsylvania,0,0
+2005,Pennsylvania,0,0
+2006,Pennsylvania,0,0
+2007,Pennsylvania,0,0
+2008,Pennsylvania,0,0
+2009,Pennsylvania,0,0
+2010,Pennsylvania,0,0
+2011,Pennsylvania,0,1
+2012,Pennsylvania,0,1
+2013,Pennsylvania,0,1
+2014,Pennsylvania,0,1
+2015,Pennsylvania,0,0
+2016,Pennsylvania,0,0
+2000,Rhode Island,0,0
+2001,Rhode Island,0,0
+2002,Rhode Island,0,0
+2003,Rhode Island,0,0
+2004,Rhode Island,0,0
+2005,Rhode Island,0,0
+2006,Rhode Island,0,0
+2007,Rhode Island,0,0
+2008,Rhode Island,0,0
+2009,Rhode Island,0,0
+2010,Rhode Island,0,0
+2011,Rhode Island,0,0
+2012,Rhode Island,0,0
+2013,Rhode Island,0,0
+2014,Rhode Island,1,0
+2015,Rhode Island,1,0
+2016,Rhode Island,1,0
+2000,South Carolina,0,0
+2001,South Carolina,0,0
+2002,South Carolina,0,0
+2003,South Carolina,0,1
+2004,South Carolina,0,1
+2005,South Carolina,0,1
+2006,South Carolina,0,1
+2007,South Carolina,0,1
+2008,South Carolina,0,1
+2009,South Carolina,0,1
+2010,South Carolina,0,1
+2011,South Carolina,0,1
+2012,South Carolina,0,1
+2013,South Carolina,0,1
+2014,South Carolina,0,1
+2015,South Carolina,0,1
+2016,South Carolina,0,1
+2000,South Dakota,0,1
+2001,South Dakota,0,1
+2002,South Dakota,0,1
+2003,South Dakota,0,1
+2004,South Dakota,0,1
+2005,South Dakota,0,1
+2006,South Dakota,0,1
+2007,South Dakota,0,1
+2008,South Dakota,0,1
+2009,South Dakota,0,1
+2010,South Dakota,0,1
+2011,South Dakota,0,1
+2012,South Dakota,0,1
+2013,South Dakota,0,1
+2014,South Dakota,0,1
+2015,South Dakota,0,1
+2016,South Dakota,0,1
+2000,Tennessee,0,0
+2001,Tennessee,0,0
+2002,Tennessee,0,0
+2003,Tennessee,1,0
+2004,Tennessee,1,0
+2005,Tennessee,0,0
+2006,Tennessee,0,0
+2007,Tennessee,0,0
+2008,Tennessee,0,0
+2009,Tennessee,0,0
+2010,Tennessee,0,0
+2011,Tennessee,0,1
+2012,Tennessee,0,1
+2013,Tennessee,0,1
+2014,Tennessee,0,1
+2015,Tennessee,0,1
+2016,Tennessee,0,1
+2000,Texas,0,0
+2001,Texas,0,0
+2002,Texas,0,0
+2003,Texas,0,1
+2004,Texas,0,1
+2005,Texas,0,1
+2006,Texas,0,1
+2007,Texas,0,1
+2008,Texas,0,1
+2009,Texas,0,1
+2010,Texas,0,1
+2011,Texas,0,1
+2012,Texas,0,1
+2013,Texas,0,1
+2014,Texas,0,1
+2015,Texas,0,1
+2016,Texas,0,1
+2000,Utah,0,1
+2001,Utah,0,1
+2002,Utah,0,1
+2003,Utah,0,1
+2004,Utah,0,1
+2005,Utah,0,1
+2006,Utah,0,1
+2007,Utah,0,1
+2008,Utah,0,1
+2009,Utah,0,1
+2010,Utah,0,1
+2011,Utah,0,1
+2012,Utah,0,1
+2013,Utah,0,1
+2014,Utah,0,1
+2015,Utah,0,1
+2016,Utah,0,1
+2000,Vermont,1,0
+2001,Vermont,0,0
+2002,Vermont,0,0
+2003,Vermont,0,0
+2004,Vermont,0,0
+2005,Vermont,0,0
+2006,Vermont,0,0
+2007,Vermont,0,0
+2008,Vermont,0,0
+2009,Vermont,0,0
+2010,Vermont,0,0
+2011,Vermont,1,0
+2012,Vermont,1,0
+2013,Vermont,1,0
+2014,Vermont,1,0
+2015,Vermont,1,0
+2016,Vermont,1,0
+2000,Virginia,0,1
+2001,Virginia,0,1
+2002,Virginia,0,0
+2003,Virginia,0,0
+2004,Virginia,0,0
+2005,Virginia,0,0
+2006,Virginia,0,0
+2007,Virginia,0,0
+2008,Virginia,0,0
+2009,Virginia,0,0
+2010,Virginia,0,0
+2011,Virginia,0,0
+2012,Virginia,0,0
+2013,Virginia,0,0
+2014,Virginia,0,0
+2015,Virginia,0,0
+2016,Virginia,0,0
+2000,Washington,0,0
+2001,Washington,0,0
+2002,Washington,1,0
+2003,Washington,0,0
+2004,Washington,0,0
+2005,Washington,1,0
+2006,Washington,1,0
+2007,Washington,1,0
+2008,Washington,1,0
+2009,Washington,1,0
+2010,Washington,1,0
+2011,Washington,1,0
+2012,Washington,1,0
+2013,Washington,1,0
+2014,Washington,1,0
+2015,Washington,0,0
+2016,Washington,0,0
+2000,West Virginia,0,0
+2001,West Virginia,1,0
+2002,West Virginia,1,0
+2003,West Virginia,1,0
+2004,West Virginia,1,0
+2005,West Virginia,1,0
+2006,West Virginia,1,0
+2007,West Virginia,1,0
+2008,West Virginia,1,0
+2009,West Virginia,1,0
+2010,West Virginia,1,0
+2011,West Virginia,1,0
+2012,West Virginia,1,0
+2013,West Virginia,1,0
+2014,West Virginia,1,0
+2015,West Virginia,0,0
+2016,West Virginia,0,0
+2000,Wisconsin,0,0
+2001,Wisconsin,0,0
+2002,Wisconsin,0,0
+2003,Wisconsin,0,0
+2004,Wisconsin,0,0
+2005,Wisconsin,0,0
+2006,Wisconsin,0,0
+2007,Wisconsin,0,0
+2008,Wisconsin,0,0
+2009,Wisconsin,1,0
+2010,Wisconsin,1,0
+2011,Wisconsin,0,1
+2012,Wisconsin,0,1
+2013,Wisconsin,0,1
+2014,Wisconsin,0,1
+2015,Wisconsin,0,1
+2016,Wisconsin,0,1
+2000,Wyoming,0,1
+2001,Wyoming,0,1
+2002,Wyoming,0,1
+2003,Wyoming,0,0
+2004,Wyoming,0,0
+2005,Wyoming,0,0
+2006,Wyoming,0,0
+2007,Wyoming,0,0
+2008,Wyoming,0,0
+2009,Wyoming,0,0
+2010,Wyoming,0,0
+2011,Wyoming,0,1
+2012,Wyoming,0,1
+2013,Wyoming,0,1
+2014,Wyoming,0,1
+2015,Wyoming,0,1
+2016,Wyoming,0,1
