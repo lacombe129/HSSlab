@@ -13,7 +13,7 @@ sheet_url <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3
 # Read the Google Sheet into an R data frame
 df <- read_sheet(sheet_url, sheet="mpsa")
 
-## you will need to specify how you wnat to read in the sheet data 
+## you will need to specify how you want to read in the sheet data 
 2
 # Print the data
 print(df)
@@ -74,15 +74,17 @@ policy_wide$`NA` <- NULL
 
 policy_wide[is.na(policy_wide)] <- 0
 
-
+policy_wide$same_sex_marriage_legal <- policy_wide$same_sex_mariage_legal
+##
+policy_wide$same_sex_mariage_legal <- NULL
 
 policy_wide <- policy_wide |>
   group_by(state) |>
   mutate(dont_say_gay=max(dont_say_gay)) |>
-  mutate(name_change_legal=max(name_change_legal)) |>
+  mutate(gac_ban=max(gac_ban)) |>
   mutate(same_sex_marriage_ban=max(same_sex_marriage_ban)) |>
   mutate(relig_lib_protection_discrim=max(relig_lib_protection_discrim)) |>
-  mutate(same_sex_mariage_legal=max(same_sex_mariage_legal)) |>
+  mutate(same_sex_marriage_legal=max(same_sex_marriage_legal)) |>
   mutate(gac_ban=max(gac_ban)) |>
   mutate(bathroom_ban=max(bathroom_ban)) |>
   mutate(surgery_require_genderchange=max(surgery_require_genderchange)) |>
@@ -99,11 +101,11 @@ policy_wide <- policy_wide |>
 policy_wide <- policy_wide |>
   group_by(state) |>
   mutate(dont_say_gay=ifelse(dont_say_gay<=year & dont_say_gay!=0,1,0)) |>
-  mutate(name_change_legal=ifelse(name_change_legal<=year & name_change_legal!=0,1,0)) |>
+  mutate(gac_ban1=ifelse(gac_ban<=year & gac_ban!=0,1,0))|>
   mutate(same_sex_marriage_ban=ifelse(same_sex_marriage_ban<=year & same_sex_marriage_ban!=0,1,0)) |>
   mutate(relig_lib_protection_discrim=ifelse(relig_lib_protection_discrim<=year & relig_lib_protection_discrim!=0,1,0)) |>
-  mutate(same_sex_mariage_legal=ifelse(same_sex_mariage_legal<=year & same_sex_mariage_legal!=0,1,0)) |>
-  mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,-1,0)) |>
+  mutate(same_sex_marriage_legal=ifelse(same_sex_marriage_legal<=year & same_sex_marriage_legal!=0,1,0)) |>
+  mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,0,0)) |>
   mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,-1,0)) |>
   mutate(surgery_require_genderchange=ifelse(surgery_require_genderchange<=year & surgery_require_genderchange!=0,1,0)) |>
   mutate(lgbt_discrim_protect=ifelse(lgbt_discrim_protect<=year & lgbt_discrim_protect!=0,1,0)) |>
@@ -116,16 +118,15 @@ policy_wide <- policy_wide |>
 
 
 ## for same sex marriage ban- needs to be removed if marriage legalized
+policy_wide$same_sex_marriage_legal[policy_wide$year >= 2015] <- 1
+policy_wide$same_sex_marriage_ban[policy_wide$same_sex_marriage_legal == 1] <- 0
 
-policy_wide$same_sex_marriage_ban[policy_wide$same_sex_mariage_legal == 1] <- -1
-
+policy_wide$gac_ban[policy_wide$gac_ban1 == 1] <- 1
+policy_wide$gac_ban1 <- NULL
 
 policy_wide <- policy_wide |>
-  filter(year>=2000) |>
-  select(-lgbt_discrim_protect2,-lgbt_discrim_protect3, -lgbt_discrim_expire_rescind2, -lgbt_discrim_expire_rescind)
+  filter(year>=2000) 
 
 
-
-
-export(policy_wide, "policy_data_wide.csv")
+export(policy_wide, "MPSA paper/policy_data_wide.csv")
 
