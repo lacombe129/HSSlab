@@ -13,6 +13,7 @@ sheet_url <- "https://docs.google.com/spreadsheets/d/1sKr_IVYbZ_Rvjwb-J1ioXKiYw3
 
 #extracting sheets
 scott <- read_sheet(sheet_url, sheet="Scott LaCombe")
+## need to tell R to use my credentials to pull from the sheets
 2
 margot <- read_sheet(sheet_url, sheet="Margot Audero")
 angelica <- read_sheet(sheet_url, sheet="Angelica Brito")
@@ -94,6 +95,7 @@ policies$party <- as.character(policies$party)
 policies$direction <- as.factor(as.character(policies$direction))
 policies$topic_area <- as.factor(policies$topic_area)
 
+## checking bills
 ### helpful for cleaning data- seems to override tidyverse though
 library(forcats)
 
@@ -103,13 +105,13 @@ policies$direction1 <- fct_collapse(policies$direction, expansive = c("expanding
 
 table(policies$direction1)
 
-policies$topic1 <- fct_collapse(policies$topic_area, Civil_Rights=c("Cilvil Rights", "civil_rights", "Civil_rights", "civil_rights, Health", "Civil_rights/....."),
+policies$topic1 <- fct_collapse(policies$topic_area, Civil_Rights=c("Cilvil Rights", "Other, civil_rights", "civil_rights", "Civil_rights", "civil_rights, Health", "Civil_rights/....."),
                                 Discrimination=c("discrimination", "Discrimination", "descrimination", "discimination", "Discrinimation", "Accomodations"),
                                 Economics=c("Economic", "Economics", "economics"),
                                 Education=c("education", "Education, Health", "Education,accommodations", "Education/Sports"),
                                 Family=c("families", "Gay Families"),
-                                Health=c("Health", "health care", "Health, civil_rights", "Health, Other", "Health; Education",
-                                         "healthcare", "Healthcare", "Healthcare/Medical", "Medial", "medical", "Medical", "medical/economical"),
+                                Health=c("Health", "health care", "health", "Health, civil_rights", "Health, Other", "Health; Education",
+                                         "healthcare", "Healthcare", "Healthcare/Medical", "Medial", "medial", "medical", "Medical", "medical/economical"),
                                 Legal=c("legal", "legal recognition", "legal_recognition", "legal recognition", "Legal Recognition", "Legal_recognition"),
                                 Other=c("other", "other"),
                                 Public_Precence=c("protection", "public presence", "Public Presence", "Public Presense", "public_presence", "public_presense"),
