@@ -235,3 +235,9 @@ p13
 dev.off()
 ```
 
+```{r}
+library(readr)
+cleaned_policies <- read_csv("cleaned_policies.csv")
+View(cleaned_policies)
+```
+
