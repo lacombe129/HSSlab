@@ -6,6 +6,7 @@ format: pdf
 ```{r}
 library(usmap)
 library(ggplot2) 
+library(tidyverse)
 ```
 
 #clean data-->specific policy that each state has
