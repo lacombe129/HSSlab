@@ -1,0 +1,236 @@
+---
+title: "policy_map"
+format: pdf
+---
+
+```{r}
+library(usmap)
+library(ggplot2) 
+```
+
+#clean data-->specific policy that each state has
+
+dont_say_gay
+```{r}
+#read the data
+policy_data_wide <- read_csv("MPSA paper/policy_data_wide.csv")
+
+```
+
+
+```{r}
+dont_say_gay<-policy_data_wide|>
+  select("dont_say_gay", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(dont_say_gay))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p1<-plot_usmap(data = dont_say_gay, values = "adopted", labels=FALSE)+
+  labs(title = "dont_say_gay policy")
+```
+
+same_sex_marriage_ban
+
+```{r}
+same_sex_marriage_ban<-policy_data_wide|>
+  select("same_sex_marriage_ban", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(same_sex_marriage_ban))|>
+  mutate(adopted = ifelse(sum_score > 0, 1, 0))
+```
+
+```{r}
+p2<-plot_usmap(data =same_sex_marriage_ban, values = "adopted", labels=FALSE)+
+  labs(title = "same_sex_marriage_ban")
+```
+
+
+relig_lib_protection_discrim
+
+```{r}
+relig_lib_protection_discrim<-policy_data_wide|>
+  select("relig_lib_protection_discrim", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(relig_lib_protection_discrim))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p3<-plot_usmap(data =relig_lib_protection_discrim, values = "adopted", labels=FALSE)+
+  labs(title = "relig_lib_protection_discrim")
+```
+
+decrim_same_sex
+
+```{r}
+decrim_same_sex<-policy_data_wide|>
+  select("decrim_same_sex", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(decrim_same_sex))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p4<-plot_usmap(data =decrim_same_sex, values = "adopted", labels=FALSE)+
+  labs(title = "decrim_same_sex")
+```
+
+bathroom_ban
+
+```{r}
+bathroom_ban<-policy_data_wide|>
+  select("bathroom_ban", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(bathroom_ban))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p5<-plot_usmap(data =bathroom_ban, values = "adopted", labels=FALSE)+
+  labs(title = "bathroom_ban")
+```
+
+gac_ban
+
+
+```{r}
+gac_ban<-policy_data_wide|>
+  select("gac_ban", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(gac_ban))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p6<-plot_usmap(data =gac_ban, values = "adopted", labels=FALSE)+
+  labs(title = "gac_ban")
+```
+
+surgery_require_genderchange
+```{r}
+surgery_require_genderchange<-policy_data_wide|>
+  select("surgery_require_genderchange", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(surgery_require_genderchange))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p7<-plot_usmap(data =surgery_require_genderchange, values = "adopted", labels=FALSE)+
+  labs(title = "surgery_require_genderchange")
+```
+lgbt_discrim_protect
+
+```{r}
+lgbt_discrim_protect<-policy_data_wide|>
+  select("lgbt_discrim_protect", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(lgbt_discrim_protect))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p8<-plot_usmap(data =lgbt_discrim_protect, values = "adopted", labels=FALSE)+
+  labs(title = "lgbt_discrim_protect")
+```
+
+
+preemption_discrim 
+
+```{r}
+preemption_discrim <-policy_data_wide|>
+  select("preemption_discrim", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(preemption_discrim))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p9<-plot_usmap(data =preemption_discrim , values = "adopted", labels=FALSE)+
+  labs(title = "preemption_discrim")
+```
+
+
+Genderchange_x   
+```{r}
+Genderchange_x<-policy_data_wide|>
+  select("Genderchange_x", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(Genderchange_x))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p10<-plot_usmap(data =Genderchange_x , values = "adopted", labels=FALSE)+
+  labs(title = "Genderchange_x")
+```
+
+No_surgery_genderchange   
+```{r}
+No_surgery_genderchange <-policy_data_wide|>
+  select("No_surgery_genderchange", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(No_surgery_genderchange))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p11<-plot_usmap(data =No_surgery_genderchange , values = "adopted", labels=FALSE)+
+  labs(title = "No_surgery_genderchange ")
+```
+
+No_genderchange     
+```{r}
+No_genderchange<-policy_data_wide|>
+  select("No_genderchange", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(No_genderchange))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p12<-plot_usmap(data =No_genderchange , values = "adopted", labels=FALSE)+
+  labs(title = "No_genderchange ")
+```
+
+same_sex_marriage_legal
+
+```{r}
+same_sex_marriage_legal<-policy_data_wide|>
+  select("same_sex_marriage_legal", "year", "state")|>
+  group_by(state)|>
+  summarize(sum_score = sum(same_sex_marriage_legal))|>
+  mutate(adopted = ifelse(sum_score != 0, 1, 0))
+```
+
+```{r}
+p13<-plot_usmap(data =same_sex_marriage_legal , values = "adopted", labels=FALSE)+
+  labs(title = "same_sex_marriage_legal")
+```
+
+
+```{r}
+pdf(file= "MPSA paper/policy_by_state.pdf" ) 
+  
+# create a 2X2 grid 
+par( mfrow= c(4,4) ) 
+
+p1
+p2
+p3
+p4
+p5
+p6
+p7
+p8
+p9
+p10
+p11
+p12
+p13
+
+dev.off()
+```
+
