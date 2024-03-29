@@ -8,55 +8,27 @@ library(usmap)
 df <- import("MPSA paper/scale.csv")
 
 
-df$state_name <-  toupper(df$statenam)
+df$state_name <-  toupper(df$state)
 ## covariate data
 complete_covars <- import("data/complete_covars.csv")
 
 # extra variables
 extra_covar <- import("MPSA paper/extra_covar.csv")
-map <- na.omit(import("MPSA paper/MAP data.csv"))
+
+### ideology also estimated for 2021-2023 using predicted results from regression
+### regression generated predictions from model using interaction of year and state to generate linear predictions for each state
+## basically linear interpolation
 ideology <- import("MPSA paper/ideology.dta")
 ideology$state_name <- toupper(ideology$state_name)
 
 
 extra_covar$state_name <-  toupper(extra_covar$state_name)
-map$state_name <- toupper(map$State)
-map$state <- map$State
-map$year <- 2023
-## Comparison to MAP
 
-map1 <- merge(map, df, by=c("state_name", "year"))
-
-
-
-## converting to quartiles first to make more direct comparison
-map1$f1_4 <- ntile(map1$F1, 4)  
-map1$MAP_4 <- ntile(map1$MAP_score, 4)  
-
-cor(map1$F1, map1$MAP_score)
-
-
-
-plot_usmap(data = map1, values = "f1_4") + 
-  scale_fill_continuous(name = "2023 Openness Score", label = scales::comma,
-                        low="lightblue", high="blue")+ 
-  theme(legend.position = "right")
-
-
-plot_usmap(data = map1, values = "MAP_4") + 
-  scale_fill_continuous(name = "2023 MAP Score", label = scales::comma,
-                        low="lightblue", high="blue")+
-  theme(legend.position = "right")
 
 ## merge together
 df1 <- merge(df, complete_covars, by=c("state_name", "year"))
 df1 <- merge(df1, extra_covar, by=c("state_name", "year"), all.x=T)
 
-ideology <- ideology |>
-  select(year, state_name, LJKE_StatePolicyMood, masssociallib_est, masseconlib_est, lag_social)
-ideology$year <- as.numeric(ideology$year)
-ideology$masseconlib_est <- as.numeric(ideology$masseconlib_est)
-ideology$masssociallib_est <- as.numeric(ideology$masssociallib_est)
 
 df1 <- merge(df1, ideology, by=c("state_name", "year"), all.x=T)
 
@@ -72,39 +44,126 @@ df1$gop_control[is.na(df1$gop_control)] <- 0
 df1$dem_control[is.na(df1$dem_control)] <- 0  
   
 
-## Models
+## Models- original data
 
 
-lm0 <- lm(F1~lag_social+gop_control+dem_control+ as.factor(year)+ as.factor(state_name), data=df1)
+lm1 <- lm(std_1~lag_social+gop_control+dem_control+ as.factor(year)+ as.factor(state_name), data=df1)
 
 
-lm1 <- lm(F1~lag_social+rep_unified+dem_unified+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+lm2 <- lm(std_1~lag_social+gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
 
-lm2 <- lm(F1~lag_social*rep_unified+lag_social*dem_unified+ std_pop+evangelical_pop+std_inc+as.factor(year), data=df1)
+lm3 <- lm(std_1~lag_social*gop_control+lag_social*dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
 
 
-summary(lm0)
+lm4 <- lm(std_2~lag_social+gop_control+dem_control+as.factor(year)+ as.factor(state_name), data=df1)
+
+lm5 <- lm(std_2~lag_social+gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+lm6 <- lm(std_2~lag_social*gop_control+lag_social*dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+### ommiting ideology from std2 so estimating parallel models
+
+lm5 <- lm(std_1~gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+lm6 <- lm(std_2~gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+
 summary(lm1)
 summary(lm2)
+summary(lm3)
+summary(lm4)
+summary(lm5)
+summary(lm6)
+
 
 library(texreg)
 
-screenreg(list(lm1, lm2), custom.coef.map = list("lag_social" = "Mass Social Liberalism",
-                                               "rep_unified" = "Unified GOP", 
-                                               "lag_social:rep_unified"="Liberalism*GOP",
-                                               "dem_unified" = "Unified Dem",
-                                               "lag_social:dem_unified"="Liberalism*Dem",
+screenreg(list(lm2, lm3, lm5, lm6), custom.coef.map = list("lag_social" = "Mass Social Liberalism",
+                                               "gop_control" = "Unified GOP", 
+                                               "lag_social:gop_control"="Liberalism*GOP",
+                                               "dem_control" = "Unified Dem",
+                                               "lag_social:dem_control"="Liberalism*Dem",
                                                "std_pop"="Population",
                                                "std_inc"="Income Per Cap",
                                                "evangelical_pop"="Evangelical %",
                                                "(Intercept)"="Intercept"))
 
 
-htmlreg(list(lm1, lm2), custom.coef.map = list("lag_social" = "Mass Social Liberalism",
-                                               "rep_unified" = "Unified GOP", 
-                                               "lag_social:rep_unified"="Liberalism*GOP",
-                                               "dem_unified" = "Unified Dem",
-                                               "lag_social:dem_unified"="Liberalism*Dem",
+htmlreg(list(lm2, lm3, lm5, lm6), custom.coef.map = list("lag_social" = "Mass Social Liberalism",
+                                               "gop_control" = "Unified GOP", 
+                                               "lag_social:gop_control"="Liberalism*GOP",
+                                               "dem_control" = "Unified Dem",
+                                               "lag_social:dem_control"="Liberalism*Dem",
                                                "std_pop"="Population",
                                                "std_inc"="Income Per Cap",
                                                "(Intercept)"="Intercept"), file="MPSA paper/opennessmodels.doc")
+
+
+### models- interpolated data
+## note that if you restrict analysis to just more recent years, the negative correlation wh public opinion disappears, eventually becomes positive
+
+lm1 <- lm(std_1~est_social+gop_control+dem_control+ as.factor(year)+ as.factor(state_name), data=df1)
+
+
+lm2 <- lm(std_1~est_social+gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+lm3 <- lm(std_1~est_social*gop_control+est_social*dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+
+lm4 <- lm(std_2~est_social+gop_control+dem_control+as.factor(year)+ as.factor(state_name), data=df1)
+
+lm5 <- lm(std_2~est_social+gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+lm6 <- lm(std_2~est_social*gop_control+est_social*dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+screenreg(list(lm2, lm3, lm5, lm6), custom.coef.map = list("est_social" = "Mass Social Liberalism",
+                                                           "gop_control" = "Unified GOP", 
+                                                           "est_social:gop_control"="Liberalism*GOP",
+                                                           "dem_control" = "Unified Dem",
+                                                           "est_social:dem_control"="Liberalism*Dem",
+                                                           "std_pop"="Population",
+                                                           "std_inc"="Income Per Cap",
+                                                           "evangelical_pop"="Evangelical %",
+                                                           "(Intercept)"="Intercept"))
+
+
+
+### what if we remove liberalism?
+
+### time
+filtered <- df1 |>
+  filter(year==2015)
+
+lm1 <- lm(std_1~gop_control+dem_control+ as.factor(year)+ as.factor(state_name), data=df1)
+
+
+lm2 <- lm(std_1~gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=df1)
+
+
+
+lm4 <- lm(std_2~gop_control+dem_control+as.factor(year)+ as.factor(state_name), data=df1)
+
+lm5 <- lm(std_2~gop_control+dem_control+ std_pop+evangelical_pop+std_inc+as.factor(year)+ as.factor(state_name), data=filtered)
+
+
+
+screenreg(list(lm1, lm2, lm4, lm5), custom.coef.map = list("gop_control" = "Unified GOP", 
+                                                         "dem_control" = "Unified Dem",
+                                                         "std_pop"="Population",
+                                                         "std_inc"="Income Per Cap",
+                                                         "evangelical_pop"="Evangelical %",
+                                                         "(Intercept)"="Intercept"))
+
+
+htmlreg(list(lm1, lm2, lm4, lm5), custom.coef.map = list("gop_control" = "Unified GOP", 
+                                                           "dem_control" = "Unified Dem",
+                                                           "std_pop"="Population",
+                                                           "std_inc"="Income Per Cap",
+                                                           "evangelical_pop"="Evangelical %",
+                                                           "(Intercept)"="Intercept"), file="MPSA paper/opennessmodels_nolib.doc")
+
+
+## for interpreting models
+
+subset<- df1 |>
+  filter(year==2023) |>
+  select(state, std_1, std_2)

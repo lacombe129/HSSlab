@@ -31,7 +31,13 @@ df <- na.omit(df)
 
 df$year <- df$adoption_year
 
-policy_wide <- df |>
+### long form of data
+
+df1 <- df |>
+  filter(policy!="Genderchange_x" & policy!="lgbt_discrim_protect" & policy!="relig_lib_protection_discrim"
+         & policy!="No_surgery_genderchange")
+
+policy_wide <- df1 |>
   group_by(state) |>
   pivot_wider(names_from = policy, values_from = adoption_year)
 
@@ -93,8 +99,14 @@ policy_wide <- policy_wide |>
   mutate(Genderchange_x=max(Genderchange_x)) |>
   mutate(No_surgery_genderchange=max(No_surgery_genderchange)) |>
   mutate(decrim_same_sex=max(decrim_same_sex)) |>
-  mutate(No_genderchange=max(No_genderchange)) 
- 
+  mutate(No_genderchange=max(No_genderchange)) |>
+  mutate(hate_crimeslgbt=max(hate_crimeslgbt)) |>
+  mutate(hate_crimes_nolgbt=max(hate_crimes_nolgbt)) |>
+  mutate(hate_crimes_gayonly=max(hate_crimes_gayonly)) |>
+  mutate(conversion_ban=max(conversion_ban)) |>
+  mutate(sports_ban=max(sports_ban)) 
+
+
 
 
 
@@ -106,26 +118,40 @@ policy_wide <- policy_wide |>
   mutate(relig_lib_protection_discrim=ifelse(relig_lib_protection_discrim<=year & relig_lib_protection_discrim!=0,1,0)) |>
   mutate(same_sex_marriage_legal=ifelse(same_sex_marriage_legal<=year & same_sex_marriage_legal!=0,1,0)) |>
   mutate(gac_ban=ifelse(gac_ban<=year & gac_ban!=0,0,0)) |>
-  mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,-1,0)) |>
+  mutate(bathroom_ban=ifelse(bathroom_ban<=year & bathroom_ban!=0,1,0)) |>
   mutate(surgery_require_genderchange=ifelse(surgery_require_genderchange<=year & surgery_require_genderchange!=0,1,0)) |>
   mutate(lgbt_discrim_protect=ifelse(lgbt_discrim_protect<=year & lgbt_discrim_protect!=0,1,0)) |>
   mutate(preemption_discrim =ifelse(preemption_discrim <=year & preemption_discrim!=0,1,0)) |>
   mutate(Genderchange_x=ifelse(Genderchange_x<=year & Genderchange_x!=0,1,0)) |>
   mutate(decrim_same_sex=ifelse(decrim_same_sex<=year & decrim_same_sex!=0,1,0)) |>
   mutate(No_surgery_genderchange=ifelse(No_surgery_genderchange<=year & No_surgery_genderchange!=0,1,0)) |>
-  mutate(No_genderchange=ifelse(No_genderchange<=year & No_genderchange!=0,1,0)) 
+  mutate(No_genderchange=ifelse(No_genderchange<=year & No_genderchange!=0,1,0))  |>
+  mutate(hate_crimeslgbt=ifelse(hate_crimeslgbt<=year & hate_crimeslgbt!=0,1,0))  |>
+  mutate(hate_crimes_gayonly=ifelse(hate_crimes_gayonly<=year & hate_crimes_gayonly!=0,1,0))  |>
+  mutate(hate_crimes_nolgbt=ifelse(hate_crimes_nolgbt<=year & hate_crimes_nolgbt!=0,1,0))  |>
+  mutate(conversion_ban=ifelse(conversion_ban<=year & conversion_ban!=0,1,0))  |>
+  mutate(sports_ban=ifelse(sports_ban<=year & sports_ban!=0,1,0)) 
 
 
 
 ## for same sex marriage ban- needs to be removed if marriage legalized
 policy_wide$same_sex_marriage_legal[policy_wide$year >= 2015] <- 1
 policy_wide$same_sex_marriage_ban[policy_wide$same_sex_marriage_legal == 1] <- 0
+policy_wide$hate_crimes_gayonly[policy_wide$hate_crimeslgbt==1] <- 0
+policy_wide$hate_crimes_nolgbt[policy_wide$hate_crimes_gayonly==1] <- 0
+policy_wide$hate_crimes_nolgbt[policy_wide$hate_crimeslgbt==1] <- 0
 
 policy_wide$gac_ban[policy_wide$gac_ban1 == 1] <- 1
 policy_wide$gac_ban1 <- NULL
 
+### for hate crime laws, some states have iteratuviely added. so need to change some to a 0 once more expansive law adopted
+### might have the same for anti-discrimination
+### need to add religious lib too
 policy_wide <- policy_wide |>
   filter(year>=2000) 
+
+
+
 
 
 export(policy_wide, "MPSA paper/policy_data_wide.csv")
